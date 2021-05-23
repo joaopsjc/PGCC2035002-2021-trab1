@@ -16,16 +16,16 @@ public class Quicksort {
 		this.pivotFunction = null;
 	}
 
-	public void sortList(Pivot pivotFunction)
+	public List<Integer> sortList(Pivot pivotFunction)
 	{
 		this.pivotFunction = pivotFunction;
-		sortFunction(sortArray);
+		return sortFunction(sortArray);
 	}
 
 	private List<Integer> sortFunction(List<Integer> currentArray)
 	{
 		List<Integer> result = currentArray;
-		if(currentArray.size()<=1)
+		if(currentArray.size()>1)
 		{
 			Integer pivot = pivotFunction.findPivot(currentArray);
 			
@@ -34,7 +34,7 @@ public class Quicksort {
 			
 			for (int i = 0; i < currentArray.size(); i++) {
 				
-				if(currentArray.get(i)<pivot)
+				if(currentArray.get(i)<=pivot)
 				{
 					leftArray.add(currentArray.get(i));
 				}
@@ -45,12 +45,24 @@ public class Quicksort {
 				
 			}
 			
-			sortFunction(leftArray);
-			sortFunction(rightArray);
+			List<Integer> resultLeftArray;
+			List<Integer> resultRightArray;
+			
+			if(leftArray.size()!=0 && rightArray.size()!=0)
+			{
+				resultLeftArray = sortFunction(leftArray);
+				resultRightArray = sortFunction(rightArray);
+			}
+			else
+			{
+				resultLeftArray = leftArray;
+				resultRightArray = rightArray;
+			}
 
-			leftArray.addAll(rightArray);
-			result = leftArray;
+			resultLeftArray.addAll(resultRightArray);
+			result = resultLeftArray;
 		}
 		return result;
 	}
+	
 }

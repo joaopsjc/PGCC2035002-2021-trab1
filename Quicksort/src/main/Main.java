@@ -19,9 +19,16 @@ public class Main {
 			sortArray.add(random.nextInt(10));
 		}
 		
+		for (Integer integer : sortArray) {
+			System.out.println(integer);
+		}	
 		Pivot pivotAtual = PivotFactory.create("Mediano");
+		System.out.println(pivotAtual.getTipo());
 		Quicksort algoritmoSort = new Quicksort(sortArray);
 		
-		algoritmoSort.sortList(pivotAtual);
+		sortArray = algoritmoSort.sortList(pivotAtual);
+		for (Integer integer : sortArray) {
+			System.out.println(integer);
+		}
 	}
 }
