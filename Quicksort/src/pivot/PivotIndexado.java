@@ -13,6 +13,9 @@ public class PivotIndexado implements Pivot {
 
 		return pivot;
 	}
-
 	
+	public String getTipo()
+	{
+		return "Indexado";
+	}
 }

@@ -25,6 +25,9 @@ public class PivotAchaPivot implements Pivot{
 		return pivot;
 	}
 
-	
+	public String getTipo()
+	{
+		return "AchaPivot";
+	}
 
 }
