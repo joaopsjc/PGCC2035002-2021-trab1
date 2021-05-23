@@ -8,7 +8,7 @@ public class PivotRandomico implements Pivot{
 	public Integer findPivot(List<Integer> sortArray) {
 		// Pegamos o primeiro e último item da lista...  
 		Integer inicio = sortArray.get(0), 
-				fim = sortArray.get(sortArray.size()),
+				fim = sortArray.get(sortArray.size()-1),
 				pivot= (1)/(fim-inicio+1);
 
 		//ou Pegamos o menor e o maior
