@@ -89,10 +89,41 @@ public class Panel {
 		}
 		System.out.println("");
 	}
+	private void troca(int indexN1,int indexN2, List<Integer> sortArray) {
+		
+		Integer aux = sortArray.get(indexN1);
+		sortArray.add(indexN1, sortArray.get(indexN2));
+		sortArray.remove(indexN1+1);
+		sortArray.add(indexN2, aux);
+		sortArray.remove(indexN2+1);
+		
+	}
+	private List<Integer> desordena(List<Integer> sortArray, int grauDesordem)
+	{
+		grauDesordem = grauDesordem *30;
+		int quantidadeDeTrocas = sortArray.size() * grauDesordem;
+		quantidadeDeTrocas = quantidadeDeTrocas/100;
+		quantidadeDeTrocas = quantidadeDeTrocas/2;
+		
+		Random random = new Random();
+		
+		for (int i=0, j=sortArray.size()-1; i<j && i<=quantidadeDeTrocas;i++,j--) {
+			
+			int randIndex = random.nextInt(j-i);
+			randIndex = randIndex + i;
+			int randIndex2 = random.nextInt(j-i);
+			randIndex2 = randIndex2 + i;
+			
+			troca(i,randIndex,sortArray);
+			troca(j,randIndex2,sortArray);
+		}
+		return sortArray;
+	}
 	
 	private void ordena(Pivot pivotAtual)
 	{
 		int tamanho=0;
+		int grauDesOrdenacao=0;
         BufferedReader reader = new BufferedReader(
 	            new InputStreamReader(System.in));
 		
@@ -104,14 +135,23 @@ public class Panel {
 			    tamanho = Integer.parseInt(reader.readLine());
 			    ClearConsole();
 			}
+			while(grauDesOrdenacao<1 || grauDesOrdenacao>3)
+			{
+				System.out.println(
+						"Escolha o grau de desordenação: \n" +
+						"1:Baixo. \n" +
+						"2:Médio. \n" +
+						"3:Alto. \n");
+			    grauDesOrdenacao = Integer.parseInt(reader.readLine());
+			    ClearConsole();
+			}
 			
-			Random random = new Random();
 			List<Integer> sortArray = new ArrayList<>();
 			
 			for (int i = 0; i < tamanho; i++) {
-				sortArray.add(random.nextInt(tamanho));
+				sortArray.add(i);
 			}
-			
+			desordena(sortArray, grauDesOrdenacao);
 			System.out.print("array gerado:");
 			imprime(sortArray);
 			
