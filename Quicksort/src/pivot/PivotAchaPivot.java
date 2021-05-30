@@ -17,7 +17,8 @@ public class PivotAchaPivot implements Pivot{
 			}
 			else
 			{
-				pivot = pos;
+				pivot = sortArray.get(pos);
+				break;
 			}
 		}
 		
