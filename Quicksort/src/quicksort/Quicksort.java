@@ -48,16 +48,14 @@ public class Quicksort {
 			List<Integer> resultLeftArray;
 			List<Integer> resultRightArray;
 			
-			if(leftArray.size()!=0 && rightArray.size()!=0)
+
+			if(rightArray.size()==0)
 			{
-				resultLeftArray = sortFunction(leftArray);
-				resultRightArray = sortFunction(rightArray);
+				leftArray.remove(pivot);
+				rightArray.add(pivot);
 			}
-			else
-			{
-				resultLeftArray = leftArray;
-				resultRightArray = rightArray;
-			}
+			resultLeftArray = sortFunction(leftArray);
+			resultRightArray = sortFunction(rightArray);
 
 			resultLeftArray.addAll(resultRightArray);
 			result = resultLeftArray;
